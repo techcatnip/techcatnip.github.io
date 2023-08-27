@@ -2,15 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://www.techcat.cc/posts/f348e963.html</loc>
-    
-    <lastmod>2023-08-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.techcat.cc/personal/love/index.html</loc>
     
     <lastmod>2023-08-27</lastmod>
@@ -38,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://www.techcat.cc/social/fcircle/index.html</loc>
+    <loc>https://www.techcat.cc/site/time/index.html</loc>
     
     <lastmod>2023-03-20</lastmod>
     
@@ -47,7 +38,7 @@
   </url>
   
   <url>
-    <loc>https://www.techcat.cc/site/time/index.html</loc>
+    <loc>https://www.techcat.cc/social/fcircle/index.html</loc>
     
     <lastmod>2023-03-20</lastmod>
     
@@ -119,6 +110,15 @@
   </url>
   
   <url>
+    <loc>https://www.techcat.cc/box/nav/index.html</loc>
+    
+    <lastmod>2023-03-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.techcat.cc/box/animation/index.html</loc>
     
     <lastmod>2023-03-20</lastmod>
@@ -129,15 +129,6 @@
   
   <url>
     <loc>https://www.techcat.cc/box/gallery/index.html</loc>
-    
-    <lastmod>2023-03-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.techcat.cc/box/nav/index.html</loc>
     
     <lastmod>2023-03-20</lastmod>
     
@@ -186,31 +177,10 @@
     <priority>0.2</priority>
   </url>
   
-  <url>
-    <loc>https://www.techcat.cc/tags/k8s/</loc>
-    <lastmod>2023-08-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.techcat.cc/tags/k8s%E9%83%A8%E7%BD%B2/</loc>
-    <lastmod>2023-08-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
 
   
   <url>
     <loc>https://www.techcat.cc/categories/%E6%BC%94%E7%A4%BA/</loc>
-    <lastmod>2023-08-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.techcat.cc/categories/k8s/</loc>
     <lastmod>2023-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

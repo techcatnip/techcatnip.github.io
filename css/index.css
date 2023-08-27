@@ -9531,6 +9531,18 @@ hr:before {
   transition: all 0.3s ease-in-out;
 }
 
+/* 评论动态图 */
+#veditor {
+	background-image: url(../img/valineBg.jpg);
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: right;
+	background-color: rgba(255, 255, 255, 0);
+	resize: vertical
+}
+
+
+
 .search-dialog {
   position: fixed;
   top: 10%;

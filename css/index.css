@@ -9459,7 +9459,6 @@ hr:before {
 #picsumBox:hover,
 #waiBizhiBox:hover,
 #btstuBox:hover,
-#COSPLAYBox:hover,
 #unsplashBox:hover {
   text-decoration: none !important;
 }
@@ -9506,10 +9505,6 @@ hr:before {
   content: "Unsplash随机壁纸";
 }
 
-#COSPLAYBox::before {
-  left: 15px;
-  content: "COSPLAY随机壁纸";
-}
 
 /* 评论区圆角 */
 .tk-meta-input .el-input .el-input-group__prepend {

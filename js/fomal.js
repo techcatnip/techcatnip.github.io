@@ -3157,18 +3157,17 @@ let EEEDog = "url(https://api.yimian.xyz/img?type=moe&size=1920x1080)";
 let seovx = "url(https://cdn.seovx.com/?mom=302)";
 // picsum随机
 let picsum = "url(https://picsum.photos/1920/1080.webp)";
-// 小歪二次元
-let waiDongman = "url(https://api.ixiaowai.cn/api/api.php)";
-//  小歪高清壁纸
-let waiBizhi = "url(https://api.ixiaowai.cn/gqapi/gqapi.php)";
+// 二次元
+let waiDongman = "url(https://cdn.seovx.com/d/?mom=302)";
+// 古风
+let waiBizhi = "url(https://cdn.seovx.com/ha/?mom=302)";
 // 博天随机
 let btstu = "url(http://api.btstu.cn/sjbz/?lx=suiji)";
 // tuapi 动漫
 let tuapi = "url(https://tuapi.eees.cc/api.php?category=dongman)";
 // unsplash随机 https://source.unsplash.com/random/1920x1080/daily (weekly)
 let unsplash = "url(https://source.unsplash.com/random/1920x1080/)";
-// COSPLAY
-let COSPLAY = "url(https://imgapi.cn/cos2.php)";
+
 // 二次元接口：https://cdn.seovx.com/d/?mom=302
 // 古风接口：https://cdn.seovx.com/ha/?mom=302
 // 搏天API随机图片：https://api.btstu.cn/sjbz/api.php

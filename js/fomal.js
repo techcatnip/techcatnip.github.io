@@ -3168,7 +3168,7 @@ let tuapi = "url(https://tuapi.eees.cc/api.php?category=dongman)";
 // unsplash随机 https://source.unsplash.com/random/1920x1080/daily (weekly)
 let unsplash = "url(https://source.unsplash.com/random/1920x1080/)";
 // COSPLAY
-let COSPLAY = "url(https://source.unsplash.com/random/1920x1080/)";
+let COSPLAY = "url(https://imgapi.cn/cos2.php)";
 // 二次元接口：https://cdn.seovx.com/d/?mom=302
 // 古风接口：https://cdn.seovx.com/ha/?mom=302
 // 搏天API随机图片：https://api.btstu.cn/sjbz/api.php

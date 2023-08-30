@@ -9478,31 +9478,31 @@ hr:before {
 }
 #bingHistoryBox::before {
   left: 34px;
-  content: "必应历史壁纸";
+  content: "必应历史";
 }
 #EEEDogBox::before {
   left: 20px;
-  content: "EEEDog动漫壁纸";
+  content: "EEEDog动漫";
 }
 #seovxBox::before {
   left: 30px;
-  content: "seovx美女壁纸";
+  content: "seovx美女";
 }
 #picsumBox::before {
   left: 24px;
-  content: "picsum随机壁纸";
+  content: "picsum随机";
 }
 #waiBizhiBox::before {
   left: 34px;
-  content: "小歪高清壁纸";
+  content: "seovx古风";
 }
 #btstuBox::before {
   left: 34px;
-  content: "博天随机壁纸";
+  content: "博天随机";
 }
 #unsplashBox::before {
   left: 15px;
-  content: "Unsplash随机壁纸";
+  content: "Unsplash随机";
 }
 
 

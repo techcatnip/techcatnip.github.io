@@ -9490,7 +9490,7 @@ hr:before {
 }
 #picsumBox::before {
   left: 24px;
-  content: "COSPLAY";
+  content: "picsum随机";
 }
 #waiBizhiBox::before {
   left: 34px;
@@ -9502,7 +9502,7 @@ hr:before {
 }
 #unsplashBox::before {
   left: 15px;
-  content: "Unsplash随机";
+  content: "COSPLAY";
 }
 
 

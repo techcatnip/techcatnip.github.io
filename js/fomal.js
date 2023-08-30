@@ -3167,7 +3167,15 @@ let btstu = "url(http://api.btstu.cn/sjbz/?lx=suiji)";
 let tuapi = "url(https://tuapi.eees.cc/api.php?category=dongman)";
 // unsplash随机 https://source.unsplash.com/random/1920x1080/daily (weekly)
 let unsplash = "url(https://source.unsplash.com/random/1920x1080/)";
-
+// COSPLAY
+let COSPLAY = "url(https://source.unsplash.com/random/1920x1080/)";
+// 二次元接口：https://cdn.seovx.com/d/?mom=302
+// 古风接口：https://cdn.seovx.com/ha/?mom=302
+// 搏天API随机图片：https://api.btstu.cn/sjbz/api.php
+// COSPLAY：https://imgapi.cn/cos2.php
+// IMGAPI动漫: https://imgapi.cn/api.php?zd=pc&fl=dongman
+// IMGAPIzhenren: https://imgapi.cn/api.php?zd=pc&fl=zhenren
+// IP签名档生成 https://tenapi.cn/v2/ipinfo
 
 // 更换背景(自己的代码)
 if (localStorage.getItem("blogbg") != undefined) {

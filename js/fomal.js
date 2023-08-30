@@ -3158,9 +3158,9 @@ let seovx = "url(https://cdn.seovx.com/?mom=302)";
 // picsum随机
 //let picsum = "url(https://picsum.photos/1920/1080.webp)";
 // COSPLAY
-let picsum = "url(https://picsum.photos/1920/1080.webp)";
+let picsum = "url(https://imgapi.cn/cos2.php)";
 // 二次元
-let waiDongman = "url(https://imgapi.cn/cos2.php)";
+let waiDongman = "url(https://cdn.seovx.com/d/?mom=302)";
 // 古风: : 源小歪高清壁纸
 let waiBizhi = "url(https://cdn.seovx.com/ha/?mom=302)";
 // 博天随机

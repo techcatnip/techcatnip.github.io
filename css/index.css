@@ -9498,11 +9498,11 @@ hr:before {
 }
 #btstuBox::before {
   left: 34px;
-  content: "博天随机";
+  content: "COSPLAY";
 }
 #unsplashBox::before {
   left: 15px;
-  content: "COSPLAY";
+  content: "Unsplash随机";
 }
 
 

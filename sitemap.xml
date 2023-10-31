@@ -92,15 +92,6 @@
   </url>
   
   <url>
-    <loc>https://www.techcat.cc/site/time/index.html</loc>
-    
-    <lastmod>2023-03-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.techcat.cc/social/fcircle/index.html</loc>
     
     <lastmod>2023-03-20</lastmod>
@@ -110,7 +101,7 @@
   </url>
   
   <url>
-    <loc>https://www.techcat.cc/site/census/index.html</loc>
+    <loc>https://www.techcat.cc/site/time/index.html</loc>
     
     <lastmod>2023-03-20</lastmod>
     
@@ -120,6 +111,15 @@
   
   <url>
     <loc>https://www.techcat.cc/personal/bb/index.html</loc>
+    
+    <lastmod>2023-03-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.techcat.cc/site/census/index.html</loc>
     
     <lastmod>2023-03-20</lastmod>
     
@@ -173,7 +173,7 @@
   </url>
   
   <url>
-    <loc>https://www.techcat.cc/box/gallery/index.html</loc>
+    <loc>https://www.techcat.cc/box/nav/index.html</loc>
     
     <lastmod>2023-03-20</lastmod>
     
@@ -182,7 +182,7 @@
   </url>
   
   <url>
-    <loc>https://www.techcat.cc/box/nav/index.html</loc>
+    <loc>https://www.techcat.cc/box/gallery/index.html</loc>
     
     <lastmod>2023-03-20</lastmod>
     
@@ -218,14 +218,14 @@
 
   
   <url>
-    <loc>https://www.techcat.cc/tags/Linux%E5%9F%BA%E7%A1%80/</loc>
+    <loc>https://www.techcat.cc/tags/Markdown/</loc>
     <lastmod>2023-10-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.techcat.cc/tags/%E7%A3%81%E7%9B%98%E6%89%A9%E5%AE%B9/</loc>
+    <loc>https://www.techcat.cc/tags/%E5%A4%96%E6%8C%82%E6%A0%87%E7%AD%BE/</loc>
     <lastmod>2023-10-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -246,14 +246,14 @@
   </url>
   
   <url>
-    <loc>https://www.techcat.cc/tags/Markdown/</loc>
+    <loc>https://www.techcat.cc/tags/Linux%E5%9F%BA%E7%A1%80/</loc>
     <lastmod>2023-10-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.techcat.cc/tags/%E5%A4%96%E6%8C%82%E6%A0%87%E7%AD%BE/</loc>
+    <loc>https://www.techcat.cc/tags/%E7%A3%81%E7%9B%98%E6%89%A9%E5%AE%B9/</loc>
     <lastmod>2023-10-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -290,7 +290,7 @@
 
   
   <url>
-    <loc>https://www.techcat.cc/categories/%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/</loc>
+    <loc>https://www.techcat.cc/categories/Markdown/</loc>
     <lastmod>2023-10-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -304,7 +304,7 @@
   </url>
   
   <url>
-    <loc>https://www.techcat.cc/categories/Markdown/</loc>
+    <loc>https://www.techcat.cc/categories/%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/</loc>
     <lastmod>2023-10-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

@@ -88,9 +88,9 @@
     
     
     <entry>
-      <title>album</title>
-      <link href="/album/index.html"/>
-      <url>/album/index.html</url>
+      <title>分类</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -99,7 +99,7 @@
     
     
     <entry>
-      <title>about</title>
+      <title>关于本人</title>
       <link href="/about/index.html"/>
       <url>/about/index.html</url>
       
@@ -121,9 +121,9 @@
     
     
     <entry>
-      <title>分类</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
+      <title>相册</title>
+      <link href="/album/index.html"/>
+      <url>/album/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -143,9 +143,9 @@
     
     
     <entry>
-      <title>闲言碎语</title>
-      <link href="/essay/index.html"/>
-      <url>/essay/index.html</url>
+      <title>朋友圈</title>
+      <link href="/fcircle/index.html"/>
+      <url>/fcircle/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -154,9 +154,9 @@
     
     
     <entry>
-      <title>友人帐</title>
-      <link href="/link/index.html"/>
-      <url>/link/index.html</url>
+      <title>闲言碎语</title>
+      <link href="/essay/index.html"/>
+      <url>/essay/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -176,20 +176,9 @@
     
     
     <entry>
-      <title>朋友圈</title>
-      <link href="/fcircle/index.html"/>
-      <url>/fcircle/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>标签</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
+      <title>友人帐</title>
+      <link href="/link/index.html"/>
+      <url>/link/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -201,6 +190,17 @@
       <title>音乐馆</title>
       <link href="/music/index.html"/>
       <url>/music/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>标签</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       

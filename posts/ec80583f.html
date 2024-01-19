@@ -1,0 +1,954 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>Linux基础配置 | 馒头馅儿大肉包</title><meta name="keywords" content="yum源,ubuntu,centos,软件源"><meta name="author" content="馒头馅儿大肉包"><meta name="copyright" content="馒头馅儿大肉包"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="Linux基础配置"><meta name="application-name" content="Linux基础配置"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="Linux基础配置"><meta property="og:url" content="http://blog.techcat.cc/posts/ec80583f.html"><meta property="og:site_name" content="馒头馅儿大肉包"><meta property="og:description" content="Linux配置软件源yum源配置文件说明yum客户端配置文件  为每个仓库单独提供的配置文件: &amp;#x2F;etc&amp;#x2F;yum.conf  为所有仓库提供公共配置: &amp;#x2F;etc&amp;#x2F;yum.repos.d&amp;#x2F;*.repo   123456789101112131415161718192021222324252627282"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://s3.bmp.ovh/imgs/2023/08/27/adfaf2a408c7d8f0.jpg?_r_=4a1934b4-8610-6234-8868-c07e34baaea3"><meta property="article:author" content="馒头馅儿大肉包"><meta property="article:tag" content="馒头馅儿大肉包,王大脑袋,Linux,kubernetes"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://s3.bmp.ovh/imgs/2023/08/27/adfaf2a408c7d8f0.jpg?_r_=4a1934b4-8610-6234-8868-c07e34baaea3"><meta name="description" content="Linux配置软件源yum源配置文件说明yum客户端配置文件  为每个仓库单独提供的配置文件: &amp;#x2F;etc&amp;#x2F;yum.conf  为所有仓库提供公共配置: &amp;#x2F;etc&amp;#x2F;yum.repos.d&amp;#x2F;*.repo   123456789101112131415161718192021222324252627282"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="http://blog.techcat.cc/posts/ec80583f"><link rel="preconnect" href="//cdn.cbd.int"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: undefined,
+  postHeadAiDescription: {"enable":true,"gptName":"AnZhiYu","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"xxxx","Referer":"https://xx.xx/"},
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: undefined,
+  greetingBox: {"enable":true,"default":"晚上好👋","list":[{"greeting":"晚安😴","startTime":0,"endTime":5},{"greeting":"早上好鸭👋, 祝你一天好心情！","startTime":6,"endTime":9},{"greeting":"上午好👋, 状态很好，鼓励一下～","startTime":10,"endTime":10},{"greeting":"11点多啦, 在坚持一下就吃饭啦～","startTime":11,"endTime":11},{"greeting":"午安👋, 宝贝","startTime":12,"endTime":14},{"greeting":"🌈充实的一天辛苦啦！","startTime":14,"endTime":18},{"greeting":"19点喽, 奖励一顿丰盛的大餐吧🍔。","startTime":19,"endTime":19},{"greeting":"晚上好👋, 在属于自己的时间好好放松😌~","startTime":20,"endTime":24}]},
+  twikooEnvId: 'https://leafy-dasik-1bfebc.netlify.app/.netlify/functions/twikoo',
+  commentBarrageConfig:undefined,
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: {"apiurl":"https://friends.techcat.cc"},
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: {"skills":["🤖️ 数码科技爱好者","🔍 分享与热心帮助","🏠 智能家居小能手","🔨 设计开发一条龙","🤝 专修交互与设计","🏃 脚踏实地行动派","🧱 团队小组发动机","💢 壮汉人狠话不多"]},
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"本文章距离最后一次更新已经过去了","messageNext":"天，文章内容可能已经变得不可靠或者版本不适配，请谨慎阅读。"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: 馒头馅儿大肉包","link":"链接: ","source":"来源: 馒头馅儿大肉包","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: {"enable":true,"delay":100,"shiftDelay":200},
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: '馒头馅儿大肉包',
+  title: 'Linux基础配置',
+  postAI: '',
+  pageFillDescription: 'Linux配置软件源, yum源配置文件说明, 配置ISO本地源, Centos 使用 ISO 光盘文件作为本地源, Centos使用脚本配置本地源, Ubuntu使用 ISO 光盘文件作为本地源, 搭建本地私有 yum 仓库, 方式一 创建局域网的基于ISO光盘的私有yum源, 方式二 reposync下载阿里云的EPEL源制作私有yum源, 方式三 rsync同步公网的yum仓库, centos 7, 配置网络源, 镜像站, 配置 Centos 网络yum源, 过期的yum源, 清华CentOS Vault 软件仓库, 阿里云CentOS Vault 软件仓库, 手动配置 Ubuntu 网络软件源, LinuxMirrors 项目, 适配系统及其版本配置软件源源配置文件说明客户端配置文件为每个仓库单独提供的配置文件为所有仓库提供公共配置配置文件示例说明名称可以自定义保证唯一的描述为系统架构服务器的地址本地地址网络地址可设置多个可以不写默认值就是为启用为不启用安装包时的校验为不校验为安装前校验效验要导入密钥密钥本地在下由源提供文件中的变量当前发行版的主版本号如等架构如等系统基础架构如等表示目录如等注意仓库指向的路径一定必须指定到目录所在目录注意如果需要启用其中一些需要将其中的改为分为两个源光盘本地路径需要先挂载腾讯网易光盘本地路径需要先挂载腾讯网易腾讯网易腾讯华为清华大学腾讯华为清华大学配置本地源使用光盘文件作为本地源将系统镜像文件挂载到驱动器上或者上传镜像文件至服务器上配置本地源创建文件创建本地源文件夹挂载镜像文件至指定的目录备份原本地源删除默认本地源及之后加载本地源测试清除缓存缓存本地源测试本地源列出所有包使用脚本配置本地源示例脚本创建本地源文件夹挂载镜像文件至指定的目录备份原本地源删除默认原本地源配置本地源创建文件并配置如下内容清除缓存缓存本地源使用光盘文件作为本地源包索引配置文件首先将文件挂载到服务器创建挂载目录指定挂载类型用来把一个文件当成硬盘分区挂接上系统或者添加本地目录到软件源配置源地址源的地址该文件中包含很多在线源如果不用在线的软件源则将其他的注释掉只保留本地源即可进行本地库依赖更新升级软件包搭建本地私有仓库下载所有仓库的相关包和数据工具集成查看帮助默认只下载包不下载数据需要指定才能下载以前版本工具来自于包方式一创建局域网的基于光盘的私有源安装需要联网或者更改源路径为光盘路径挂载光盘需要事先将光盘文件复制到服务器中复制文件到默认目录中客户端配置客户端配置方式二下载阿里云的源制作私有源首先配置好服务器的源可查看下面的配置网络源一节安装需要联网或者更改源路径为光盘路径下载相关仓库包和元数据写法加此选项可以下载元数据以前版本工具来自包没有先安装下载相关的文件下面两个步骤只有没数据才需要执行命令对下的包创建为本地的仓库目的是为生成目录并自动创建索引信息查看下载的文件启动为保证本地源能和阿里云镜像源同步可以通过脚本定时任务实现同步日志输出同步镜像源每次添加新的时必须更新索引信息定时任务每周六凌晨三点同步源客户端源配置方式三同步公网的仓库使用来和公网的仓库同步推荐使用此方法同步特别是在网络不稳定容易中断的情况下因为是快速增量备份工具它能从上次中断的文件后继续同步缺点是很多门户网站源不支持同步因为这里直接下载了公网源的文件所以不需要再用来创建索引了同步完之后就直接可以用了包和相关文件安装需要联网或者更改源路径为光盘路径包和相关文件的扩展包客户端配置文件参数说明归档模式表示以递归方式传输文件并保持所有文件属详细模式输出对子目录以递归模式处理保持文件时间信息对备份的文件在传输时进行压缩处理保留硬链接删除那些中没有的文件在传输末尾把所有更新的文件放到位指定排除不需要传输的文件模式指定不排除而需要传输的文件模式配置网络源镜像站序号镜像站名称阿里云腾讯云华为云网易搜狐清华大学北京大学浙江大学南京大学重庆大学兰州大学上海交通大学哈尔滨工业大学中国科学技术大学中国科学院软件研究所使用建议上述列表中的镜像站均支持软件源列表根据单位性质地理位置名称长度进行排序与实际速度无关软件源的速度区分刷新速度和下载速度后者才是关键具体请结合实际地理位置选择尝试华北地区建议优先使用中科大腾讯云镜像站你可以使用下面提到的辅助工具网站来帮助你进行选择目前不建议使用阿里云镜像站由于使用人数过多其公网下行带宽已被限制在了左右如果你的内网环境过于复杂例如经过了多次转换那么请不要使用清华大学镜像站容易被阻断配置网络源请注意非版已提前进入停止服务阶段因此镜像已被官方移动如果正在寻找关于这些系统的镜像请配置各大镜像站的源注意与之前的版本不同系统有两个源和需要分别设置两个仓库脚本配置网络源清理缓存更新缓存使用命令配置清华源对于南京大学源对于由于已经停止支持所以需要配置过期源过期的源需要确定所需要的小版本如无特殊需要则使用该大版本的最后一个小版本比如需要在命令中替换变量清华软件仓库镜像站使用帮助清华大学开源软件镜像站及之前之后更新软件包缓存阿里云软件仓库更新软件包缓存手动配置网络软件源的软件源配置文件是将系统自带的该文件做个备份将该文件替换为下面内容即可使用选择的软件源镜像清华源镜像站使用帮助清华大学开源软件镜像站阿里云源镜像下载地址安装教程阿里巴巴开源镜像站南京大学源软件仓库镜像使用帮助版本备份原来的源将以前的源备份一下以防以后可以用的打开文件在前面添加如下条目并保存默认注释了源码镜像以提高速度如有需要可自行取消注释预发布软件源不建议启用更新源如出现依赖问题解决方式如下更新软件版本备份原来的源将以前的源备份一下以防以后可以用的打开文件在前面添加如下条目并保存默认注释了源码镜像以提高速度如有需要可自行取消注释预发布软件源不建议启用版本备份原来的源将以前的源备份一下以防以后可以用的打开文件在前面添加如下条目并保存默认注释了源码镜像以提高速度如有需要可自行取消注释预发布软件源不建议启用项目一键更换系统软件源脚本这是一个完全开源的非盈利项目旨在为从事计算机相关行业的朋友们提供便利适配系统及其版本当前支持上述基于的发行版和及其部分衍生版本点击列表中的图标可快速前往其官网理论支持所有架构的环境脚本文件',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-01-19 17:40:01',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.0.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://npm.elemecdn.com/anzhiyu-blog-static@1.0.4/img/avatar.jpg"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><div class="back-home-button"><i class="anzhiyufont anzhiyu-icon-grip-vertical"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" href="https://blog.techcat.cc/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://index.anheyu.com/" title="个人主页"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2023/08/13/64d8c2748ef34.jpg" alt="个人主页"/><span class="back-menu-item-text">个人主页</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.anheyu.com/" title="安知鱼图床"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.anheyu.com/favicon.ico" alt="安知鱼图床"/><span class="back-menu-item-text">安知鱼图床</span></a></div></div></div></div><a id="site-name" href="/" accesskey="h"><div class="title">馒头馅儿大肉包</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a><div id="he-plugin-simple"></div><script>var WIDGET = {
+  "CONFIG": {
+    "modules": "0124",
+    "background": "2",
+    "tmpColor": "FFFFFF",
+    "tmpSize": "16",
+    "cityColor": "FFFFFF",
+    "citySize": "16",
+    "aqiColor": "E8D87B",
+    "aqiSize": "16",
+    "weatherIconSize": "24",
+    "alertIconSize": "18",
+    "padding": "10px 10px 10px 10px",
+    "shadow": "0",
+    "language": "auto",
+    "borderRadius": "20",
+    "fixed": "true",
+    "vertical": "top",
+    "horizontal": "left",
+    "left": "20",
+    "top": "7.1",
+    "key": "df245676fb434a0691ead1c63341cd94"
+  }
+}
+</script><link rel="stylesheet" href="https://widget.qweather.net/simple/static/css/he-simple.css?v=1.4.0"/><script src="https://widget.qweather.net/simple/static/js/he-simple.js?v=1.4.0"></script></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 归档</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/fcircle/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 朋友圈</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/?id=6681991756&amp;server=netease"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/bangumis/"><i class="anzhiyufont anzhiyu-icon-bilibili faa-tada" style="font-size: 0.9em;"></i><span> 追番页</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/album/"><i class="anzhiyufont anzhiyu-icon-images faa-tada" style="font-size: 0.9em;"></i><span> 相册集</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/air-conditioner/"><i class="anzhiyufont anzhiyu-icon-fan faa-tada" style="font-size: 0.9em;"></i><span> 小空调</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/equipment/"><i class="anzhiyufont anzhiyu-icon-dice-d20 faa-tada" style="font-size: 0.9em;"></i><span> 我的装备</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button only-home" id="travellings_button" title="随机前往一个开往项目网站"><a class="site-page" onclick="anzhiyu.totraveling()" title="随机前往一个开往项目网站" href="javascript:void(0);" rel="external nofollow" data-pjax-state="external"><i class="anzhiyufont anzhiyu-icon-train"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索🔍" accesskey="s"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span> 搜索</span></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png" target="_blank"><img class="post-qr-code-img" alt="微信" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">音乐</div><span class="author-content-item-title">灵魂的碰撞💥</span></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">4</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div><div class="console-btn-item" id="consoleKeyboard" onclick="anzhiyu.keyboardToggle()" title="快捷键开关"><a class="keyboard-switch"><i class="anzhiyufont anzhiyu-icon-keyboard"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/" itemprop="url">Linux</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/yum%E6%BA%90/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>yum源</span></a><a class="article-meta__tags" href="/tags/ubuntu/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>ubuntu</span></a><a class="article-meta__tags" href="/tags/centos/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>centos</span></a><a class="article-meta__tags" href="/tags/%E8%BD%AF%E4%BB%B6%E6%BA%90/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>软件源</span></a></span></div></div><h1 class="post-title" itemprop="name headline">Linux基础配置</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2024-01-19T09:21:30.000Z" title="发表于 2024-01-19 17:21:30">2024-01-19</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2024-01-19T09:40:01.819Z" title="更新于 2024-01-19 17:40:01">2024-01-19</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">字数总计:</span><span class="word-count" title="文章字数">4.9k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">阅读时长:</span><span>22分钟</span></span><span class="post-meta-separator"></span><span class="post-meta-pv-cv" id="" data-flag-title="Linux基础配置"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">阅读量:</span><span id="busuanzi_value_page_pv"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为北京"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>北京</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="https://s3.bmp.ovh/imgs/2023/08/27/adfaf2a408c7d8f0.jpg?_r_=4a1934b4-8610-6234-8868-c07e34baaea3"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="http://blog.techcat.cc/posts/ec80583f.html"><header><a class="post-meta-categories" href="/categories/Linux/" itemprop="url">Linux</a><a href="/tags/yum%E6%BA%90/" tabindex="-1" itemprop="url">yum源</a><a href="/tags/ubuntu/" tabindex="-1" itemprop="url">ubuntu</a><a href="/tags/centos/" tabindex="-1" itemprop="url">centos</a><a href="/tags/%E8%BD%AF%E4%BB%B6%E6%BA%90/" tabindex="-1" itemprop="url">软件源</a><h1 id="CrawlerTitle" itemprop="name headline">Linux基础配置</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">馒头馅儿大肉包</span><time itemprop="dateCreated datePublished" datetime="2024-01-19T09:21:30.000Z" title="发表于 2024-01-19 17:21:30">2024-01-19</time><time itemprop="dateCreated datePublished" datetime="2024-01-19T09:40:01.819Z" title="更新于 2024-01-19 17:40:01">2024-01-19</time></header><h1 id="Linux配置软件源"><a href="#Linux配置软件源" class="headerlink" title="Linux配置软件源"></a>Linux配置软件源</h1><h2 id="yum源配置文件说明"><a href="#yum源配置文件说明" class="headerlink" title="yum源配置文件说明"></a>yum源配置文件说明</h2><p>yum客户端配置文件</p>
+<ul>
+<li><p>为每个仓库单独提供的配置文件: <code>/etc/yum.conf</code></p>
+</li>
+<li><p>为所有仓库提供公共配置: <code>/etc/yum.repos.d/*.repo</code></p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum配置文件示例说明: </span></span><br><span class="line">[epel]                                                  <span class="comment">#id名称,可以自定义,保证唯一</span></span><br><span class="line">name=Extra Packages <span class="keyword">for</span> Enterprise Linux 7 - <span class="variable">$basearch</span>  <span class="comment">#repo的描述,$basearch为系统架构</span></span><br><span class="line">baseurl=http://mirrors.aliyun.com/epel/7/<span class="variable">$basearch</span>      <span class="comment">#服务器的地址,file://本地地址;网络地址http://;https://;ftp://;可设置多个</span></span><br><span class="line">enabled=1         <span class="comment">#可以不写,默认值就是1,为启用;0为不启用</span></span><br><span class="line">gpgcheck=0        <span class="comment">#安装包时的校验,0为不校验,1为安装前校验,效验要导入密钥 </span></span><br><span class="line">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7  <span class="comment">#密钥,本地在/etc/pki/rpm-gpg下,由yum源提供</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># repo文件中的变量:</span></span><br><span class="line"><span class="comment"># $releasever:当前os发行版的主版本号,如6;7;8;等</span></span><br><span class="line"><span class="comment"># $arch:CPU架构,如x86_64等</span></span><br><span class="line"><span class="comment"># $basearch:系统基础架构如x86_64等</span></span><br><span class="line"><span class="comment"># $contentdir:表示目录,如centos-7等</span></span><br><span class="line"><span class="comment"># 注意: yum仓库指向的路径一定必须指定到repodata目录所在目录</span></span><br><span class="line"><span class="comment"># 注意，如果需要启用其中一些 repo，需要将其中的 enabled=0 改为 enabled=1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># CentOS8 分为两个源  baseos、AppStream</span></span><br><span class="line">    BaseOS</span><br><span class="line">        <span class="comment">#光盘本地路径,需要先挂载</span></span><br><span class="line">        file:///mnt/BaseOS/</span><br><span class="line">        <span class="comment">#腾讯</span></span><br><span class="line">        https://mirrors.cloud.tencent.com/centos/<span class="variable">$releasever</span>/BaseOS/<span class="variable">$basearch</span>/os</span><br><span class="line">        <span class="comment">#网易</span></span><br><span class="line">        https://mirrors.163.com/centos/<span class="variable">$releasever</span>/BaseOS/<span class="variable">$basearch</span>/os/</span><br><span class="line"></span><br><span class="line">    AppStream</span><br><span class="line">        <span class="comment">#光盘本地路径,需要先挂载</span></span><br><span class="line">        file:///mnt/AppStream/</span><br><span class="line">                <span class="comment">#腾讯</span></span><br><span class="line">        https://mirrors.cloud.tencent.com/centos/<span class="variable">$releasever</span>/AppStream/<span class="variable">$basearch</span>/os/</span><br><span class="line">        <span class="comment">#网易</span></span><br><span class="line">        https://mirrors.163.com/centos/<span class="variable">$releasever</span>/AppStream/<span class="variable">$basearch</span>/os/</span><br><span class="line"></span><br><span class="line"><span class="comment"># CentOS7  base</span></span><br><span class="line">        <span class="comment">#腾讯</span></span><br><span class="line">        https://mirrors.cloud.tencent.com/centos/<span class="variable">$releasever</span>/os/<span class="variable">$basearch</span>/</span><br><span class="line">        <span class="comment">#网易</span></span><br><span class="line">        https://mirrors.163.com/centos/<span class="variable">$releasever</span>/os/<span class="variable">$basearch</span>/</span><br><span class="line"></span><br><span class="line"><span class="comment"># EPEL </span></span><br><span class="line">    CentOS8</span><br><span class="line">            <span class="comment">#腾讯</span></span><br><span class="line">            https://mirrors.cloud.tencent.com/epel/<span class="variable">$releasever</span>/Everything/<span class="variable">$basearch</span>/</span><br><span class="line">            <span class="comment">#华为</span></span><br><span class="line">            https://mirrors.huaweicloud.com/epel/<span class="variable">$releasever</span>/Everything/<span class="variable">$basearch</span>/</span><br><span class="line">            <span class="comment">#清华大学</span></span><br><span class="line">            https://mirrors.tuna.tsinghua.edu.cn/epel/<span class="variable">$releasever</span>/Everything/<span class="variable">$basearch</span>/</span><br><span class="line">    CentOS7</span><br><span class="line">            <span class="comment">#腾讯</span></span><br><span class="line">            https://mirrors.cloud.tencent.com/epel/<span class="variable">$releasever</span>/<span class="variable">$basearch</span>/</span><br><span class="line">            <span class="comment">#华为</span></span><br><span class="line">            https://mirrors.huaweicloud.com/epel/<span class="variable">$releasever</span>/<span class="variable">$basearch</span>/</span><br><span class="line">            <span class="comment">#清华大学</span></span><br><span class="line">            https://mirrors.tuna.tsinghua.edu.cn/epel/<span class="variable">$releasever</span>/<span class="variable">$basearch</span>/</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置ISO本地源"><a href="#配置ISO本地源" class="headerlink" title="配置ISO本地源"></a>配置ISO本地源</h2><h3 id="Centos-使用-ISO-光盘文件作为本地源"><a href="#Centos-使用-ISO-光盘文件作为本地源" class="headerlink" title="Centos 使用 ISO 光盘文件作为本地源"></a>Centos 使用 ISO 光盘文件作为本地源</h3><p>将系统 iso 镜像文件挂载到 CD&#x2F;DVD 驱动器上，或者上传 iso 镜像文件至服务器上. 配置本地源，创建 cdrom.repo 文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p /mnt/centos/          <span class="comment"># 创建本地源文件夹</span></span><br><span class="line">mount /dev/sr0 /mnt/centos     <span class="comment"># 挂载镜像文件至指定的目录</span></span><br><span class="line"><span class="built_in">cp</span> -rf /etc/yum.repos.d  /etc/yum.repos.d_$(<span class="built_in">date</span> <span class="string">&#x27;+%Y%m%d_%H%M%S&#x27;</span>)     <span class="comment"># 备份原本地源</span></span><br><span class="line"><span class="built_in">rm</span> -rf /etc/yum.repos.d/*      <span class="comment"># 删除默认本地源</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># centos 7</span></span><br><span class="line"><span class="built_in">cat</span> &gt; /etc/yum.repos.d/cdrom.repo &lt;&lt;-<span class="string">EOF</span></span><br><span class="line"><span class="string">[iso]</span></span><br><span class="line"><span class="string">name=cdrom</span></span><br><span class="line"><span class="string">baseurl=file:///mnt/centos/</span></span><br><span class="line"><span class="string">gpgcheck=0</span></span><br><span class="line"><span class="string">enabled=1</span></span><br><span class="line"><span class="string">EOF</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># centos 8及之后</span></span><br><span class="line"><span class="built_in">cat</span> &gt; /etc/yum.repos.d/cdrom.repo &lt;&lt;-<span class="string">EOF</span></span><br><span class="line"><span class="string">[BaseOS]</span></span><br><span class="line"><span class="string">name=cdrom</span></span><br><span class="line"><span class="string">baseurl=file:///mnt/centos/BaseOS/</span></span><br><span class="line"><span class="string">gpgcheck=0</span></span><br><span class="line"><span class="string">enabled=1</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[AppStream]</span></span><br><span class="line"><span class="string">name=cdrom</span></span><br><span class="line"><span class="string">baseurl=file:///mnt/centos/AppStream/</span></span><br><span class="line"><span class="string">gpgcheck=0</span></span><br><span class="line"><span class="string">enabled=1</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
+
+<p>加载本地 yum 源&amp;测试</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum clean all    <span class="comment"># 清除yum缓存</span></span><br><span class="line">yum makecache    <span class="comment"># 缓存本地yum源</span></span><br><span class="line">yum list         <span class="comment"># 测试yum本地源 ,列出所有rpm包</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Centos使用脚本配置本地源"><a href="#Centos使用脚本配置本地源" class="headerlink" title="Centos使用脚本配置本地源"></a>Centos使用脚本配置本地源</h3><p>示例脚本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">vim /root/auto_source.sh</span><br><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="comment"># 创建本地源文件夹</span></span><br><span class="line"><span class="built_in">mkdir</span> -p /media/centos/</span><br><span class="line"><span class="comment"># 挂载镜像文件至指定的目录</span></span><br><span class="line">mount /dev/sr0 /media/centos</span><br><span class="line"><span class="comment"># 备份原本地源</span></span><br><span class="line"><span class="built_in">cp</span> -rf /etc/yum.repos.d  /etc/yum.repos.d_$(<span class="built_in">date</span> <span class="string">&#x27;+%Y%m%d_%H%M%S&#x27;</span>)</span><br><span class="line"><span class="comment"># 删除默认原本地源</span></span><br><span class="line"><span class="built_in">rm</span> -rf /etc/yum.repos.d/*</span><br><span class="line"><span class="comment"># 配置本地源,创建cdrom.repo文件,并配置如下内容</span></span><br><span class="line"><span class="built_in">cat</span> &gt; /etc/yum.repos.d/cdrom.repo &lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">[iso]</span></span><br><span class="line"><span class="string">name=cdrom</span></span><br><span class="line"><span class="string">baseurl=file:///media/centos/</span></span><br><span class="line"><span class="string">gpgcheck=0</span></span><br><span class="line"><span class="string">enabled=1</span></span><br><span class="line"><span class="string">EOF</span></span><br><span class="line"><span class="comment"># 清除yum缓存</span></span><br><span class="line">yum clean all</span><br><span class="line"><span class="comment"># 缓存本地yum源</span></span><br><span class="line">yum makecache</span><br></pre></td></tr></table></figure>
+
+<h3 id="Ubuntu使用-ISO-光盘文件作为本地源"><a href="#Ubuntu使用-ISO-光盘文件作为本地源" class="headerlink" title="Ubuntu使用 ISO 光盘文件作为本地源"></a>Ubuntu使用 ISO 光盘文件作为本地源</h3><p>APT包索引配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/etc/apt/sources.list </span><br><span class="line">/etc/apt/sources.list.d</span><br></pre></td></tr></table></figure>
+
+<p>首先将 ISO 文件挂载到服务器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> /media/cdrom     <span class="comment"># 创建挂载目录 </span></span><br><span class="line"><span class="comment">#-t 指定挂载类型 ；-O loop：用来把一个文件当成硬盘分区挂接上系统 ；</span></span><br><span class="line">mount -t iso9660 /dev/cdrom /media/cdrom    <span class="comment"># 或者 mount -t auto /dev/cdrom /media/cdrom</span></span><br><span class="line">sudo apt-cdrom -m -d=/media/cdrom add      <span class="comment"># 添加本地目录到软件源</span></span><br></pre></td></tr></table></figure>
+
+<p>配置源地址</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># apt源的地址,该文件中包含很多在线源，如果不用在线的软件源，则将其他的注释掉只保留本地源即可</span></span><br><span class="line">vim /etc/apt/sources.list</span><br><span class="line">deb cdrom:[Ubuntu-Server 18.04.5 LTS _Bionic Beaver_ - Release amd64 (20200810)]/ bionic main restricted</span><br><span class="line"><span class="comment"># 进行本地库依赖更新 </span></span><br><span class="line">apt-get update</span><br><span class="line"><span class="comment">#升级软件包</span></span><br><span class="line">apt-get upgrade </span><br></pre></td></tr></table></figure>
+
+<h2 id="搭建本地私有-yum-仓库"><a href="#搭建本地私有-yum-仓库" class="headerlink" title="搭建本地私有 yum 仓库"></a>搭建本地私有 yum 仓库</h2><p>下载所有yum仓库的相关包和meta 数据</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CentOS 8 dnf 工具集成</span></span><br><span class="line">dnf reposync --<span class="built_in">help</span> <span class="comment"># 查看帮助</span></span><br><span class="line"><span class="comment"># 默认只下载rpm包，不下载 meta数据，需要指定--download-metadata 才能下载 meta</span></span><br><span class="line">dnf reposync --repoid=epel --download-metadata -p /path </span><br><span class="line"></span><br><span class="line"><span class="comment"># CentOS 7 以前版本，reposync工具来自于yum-utils包</span></span><br><span class="line">reposync --repoid=epel --download-metadata -p /path </span><br></pre></td></tr></table></figure>
+
+<h3 id="方式一-创建局域网的基于ISO光盘的私有yum源"><a href="#方式一-创建局域网的基于ISO光盘的私有yum源" class="headerlink" title="方式一: 创建局域网的基于ISO光盘的私有yum源"></a>方式一: 创建局域网的基于ISO光盘的私有yum源</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装需要联网或者更改yum源路径为光盘路径</span></span><br><span class="line">yum -y install httpd</span><br><span class="line">systemctl <span class="built_in">enable</span> --now httpd</span><br><span class="line"><span class="comment"># 挂载光盘,需要事先将光盘文件复制到服务器中</span></span><br><span class="line"><span class="built_in">mkdir</span> -pv /mnt/centos/&#123;7,8&#125;</span><br><span class="line">mount /root/CentOS-7-x86_64-Everything-2009.iso  /mnt/centos/7 </span><br><span class="line">mount /root/CentOS-8.3.2011-x86_64-dvd1.iso  /mnt/centos/8</span><br><span class="line"><span class="comment"># 复制文件到httpd默认web目录中</span></span><br><span class="line"><span class="built_in">cp</span> -a /mnt/* /var/www/html/centos/8</span><br><span class="line"></span><br><span class="line"><span class="comment"># centos 7 yum客户端配置</span></span><br><span class="line"><span class="built_in">cat</span> &gt; /etc/yum.repos.d/test.repo&lt;&lt;-<span class="string">EOF</span></span><br><span class="line"><span class="string">[BaseOS]</span></span><br><span class="line"><span class="string">name=BaseOS</span></span><br><span class="line"><span class="string">baseurl=http://10.0.0.8/centos/8/BaseOS</span></span><br><span class="line"><span class="string">gpgcheck=0</span></span><br><span class="line"><span class="string">enabled=1</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># centos 8 yum客户端配置</span></span><br><span class="line"><span class="string">cat &gt; /etc/yum.repos.d/test.repo&lt;&lt;-EOF</span></span><br><span class="line">[BaseOS]</span><br><span class="line">name=BaseOS</span><br><span class="line">baseurl=http://10.0.0.8/centos/8/BaseOS</span><br><span class="line">gpgcheck=0</span><br><span class="line">enabled=1</span><br><span class="line"></span><br><span class="line">[AppStream]</span><br><span class="line">name=Appstream</span><br><span class="line">baseurl=http://10.0.0.8/centos/8/AppStream/</span><br><span class="line">gpgcheck=0</span><br><span class="line">enabled=1</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<h3 id="方式二-reposync下载阿里云的EPEL源，制作私有yum源"><a href="#方式二-reposync下载阿里云的EPEL源，制作私有yum源" class="headerlink" title="方式二: reposync下载阿里云的EPEL源，制作私有yum源"></a>方式二: reposync下载阿里云的EPEL源，制作私有yum源</h3><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1444713">https://cloud.tencent.com/developer/article/1444713</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 首先配置好yum服务器的源,可查看下面的&lt;配置 Centos 网络yum源&gt;一节</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装需要联网或者更改yum源路径为光盘路径</span></span><br><span class="line">yum -y install httpd</span><br><span class="line">systemctl <span class="built_in">enable</span> --now httpd</span><br><span class="line"></span><br><span class="line">[root@centos8 ~]<span class="comment">#dnf repolist</span></span><br><span class="line">Last metadata expiration check: 0:07:40 ago on Sun 22 Dec 2019 03:14:16 PM CST.</span><br><span class="line">repo <span class="built_in">id</span>             repo name                                           status</span><br><span class="line">AppStream           AppStream                                           4,681</span><br><span class="line">BaseOS               BaseOS                                              1,655</span><br><span class="line">epel                 EPEL                                                3,707</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载相关仓库包和元数据,CentOS 8 写法, --download-metadata 加此选项可以下载元数据</span></span><br><span class="line">dnf reposync --repoid=epel --download-metadata -p /var/www/html</span><br><span class="line"><span class="comment"># CentOS 7 以前版本，reposync工具来自yum-utils包，没有先安装yum -y install yum-utils</span></span><br><span class="line">reposync --repoid=epel --download-metadata -p /var/www/html</span><br><span class="line"><span class="comment"># 下载相关的key文件</span></span><br><span class="line">wget -P /var/www/html/epel/ https://mirrors.aliyun.com/epel/RPM-GPG-KEY-EPEL-8</span><br><span class="line"><span class="comment"># 下面两个步骤只有centos 7 没meta数据才需要执行,createrepo命令对/var/www/html/epel下的 rpm包创建为本地的 YUM 仓库，目的是为生成repodata目录并自动创建索引信息</span></span><br><span class="line"><span class="comment">#[root@centos7 ~]# yum -y install createrepo httpd </span></span><br><span class="line"><span class="comment">#[root@centos7 ~]# createrepo -pdo /var/www/html/epel/ /var/www/html/epel/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看下载的文件,启动httpd</span></span><br><span class="line">[root@centos8 ~]<span class="comment">#ls /var/www/html/epel/</span></span><br><span class="line">Packages repodata</span><br><span class="line">[root@centos8 ~]<span class="comment"># systemctl start httpd</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 为保证本地yum源能和阿里云镜像源同步，可以通过脚本定时任务实现(Centos7)</span></span><br><span class="line">vim /root/yum-update.sh</span><br><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line">datetime=`<span class="built_in">date</span> +<span class="string">&quot;%Y-%m-%d&quot;</span>`</span><br><span class="line"><span class="built_in">exec</span> &gt; /var/log/epel.log　　               <span class="comment">#同步日志输出</span></span><br><span class="line">reposync -d -r epel -p /var/www/html/  　　<span class="comment">#同步镜像源</span></span><br><span class="line"><span class="keyword">if</span> [ $? -eq 0 ];<span class="keyword">then</span></span><br><span class="line">    createrepo --update  /var/www/html/epel 　　<span class="comment">#每次添加新的rpm时,必须更新epel索引信息</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;SUCESS: <span class="variable">$datetime</span> epel update successful&quot;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;ERROR: <span class="variable">$datetime</span> epel update failed&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="comment"># 定时任务：每周六凌晨三点同步yum源</span></span><br><span class="line">crontab -e</span><br><span class="line">3 * * 6 /bin/bash/root/yum-update.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># centos 8 客户端yum源配置</span></span><br><span class="line">[root@repo-client ~]<span class="comment"># vim /etc/yum.repos.d/centos8.repo </span></span><br><span class="line">[BaseOS]</span><br><span class="line">name=BaseOS</span><br><span class="line">baseurl=http://10.0.0.8/centos/8/BaseOS</span><br><span class="line">gpgcheck=0</span><br><span class="line">enabled=1</span><br><span class="line">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial</span><br><span class="line"></span><br><span class="line">[AppStream]</span><br><span class="line">name=Appstream</span><br><span class="line">baseurl=http://10.0.0.8/centos/8/AppStream/</span><br><span class="line">gpgcheck=0</span><br><span class="line">enabled=1</span><br><span class="line">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial</span><br><span class="line"></span><br><span class="line">[extras]</span><br><span class="line">name=extras</span><br><span class="line">baseurl=http://10.0.0.8/centos/extras/</span><br><span class="line">gpgcheck=0</span><br><span class="line">enabled=1</span><br><span class="line"></span><br><span class="line">[epel]</span><br><span class="line">name=epel</span><br><span class="line">baseurl=http://10.0.0.8/epel/</span><br><span class="line">gpgkey=http://10.0.0.8/epel/RPM-GPG-KEY-EPEL-8</span><br><span class="line">gpgcheck=0</span><br><span class="line">enabled=1</span><br></pre></td></tr></table></figure>
+
+<h3 id="方式三-rsync同步公网的yum仓库"><a href="#方式三-rsync同步公网的yum仓库" class="headerlink" title="方式三: rsync同步公网的yum仓库"></a>方式三: rsync同步公网的yum仓库</h3><p>使用rsync来和公网的yum仓库同步，推荐使用此方法同步，特别是在网络不稳定容易中断的情况下，因为rsync是快速增量备份工具，它能从上次中断的文件后继续同步，缺点是很多门户网站yum源不支持rsync同步。</p>
+<p>因为这里直接下载了公网yum源的repo文件，所以不需要再用createrepo来创建索引了，同步完之后就直接可以用了。</p>
+<h4 id="centos-7"><a href="#centos-7" class="headerlink" title="centos 7"></a>centos 7</h4><p>Base包和相关repo文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装需要联网或者更改yum源路径为光盘路径</span></span><br><span class="line">yum -y install httpd</span><br><span class="line">systemctl <span class="built_in">enable</span> --now httpd</span><br><span class="line"></span><br><span class="line">rsync -avrtzH --delete --delay-updates rsync://rsync.mirrors.ustc.edu.cn/centos/7/os/x86_64/Packages/ /var/www/html/centos/7/os/x86_64/Packages/ &gt; /tmp/rsyncbase.log 2&gt;&amp;1</span><br><span class="line">rsync -avrtzH --delete --delay-updates rsync://rsync.mirrors.ustc.edu.cn/centos/7/os/x86_64/repodata/ /var/www/html/centos/7/os/x86_64/repodata/ &gt; /tmp/rsyncbaserepo.log 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<p>Update包和相关repo文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rsync -avrtzH --delete --delay-updates rsync://rsync.mirrors.ustc.edu.cn/centos/7/updates/x86_64/Packages/  /var/www/html/centos/7/updates/x86_64/Packages/ &gt; /tmp/rsyncupdate.log 2&gt;&amp;1</span><br><span class="line">rsync -avrtzH --delete --delay-updates rsync://rsync.mirrors.ustc.edu.cn/centos/7/updates/x86_64/repodata/ /var/www/html/centos/7/updates/x86_64/repodata/ &gt; /tmp/rsyncupdaterepo.log 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<p>epel的扩展包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync -avrtzH --delete --delay-updates --exclude=SRPMS/ --exclude=aarch64/ --exclude=ppc64/ --exclude=ppc64le/ --exclude=x86_64/debug/ rsync://rsync.mirrors.ustc.edu.cn/epel/7/  /var/www/html/epel/7/  &gt; /tmp/rsyncepel.log 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<p>客户端配置repo文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/yum.repos.d/centos7.repo</span><br><span class="line">[base]</span><br><span class="line">name=CentOS-<span class="variable">$releasever</span> - Base</span><br><span class="line">baseurl=http://10.100.10.89/centos/<span class="variable">$releasever</span>/os/<span class="variable">$basearch</span>/</span><br><span class="line"><span class="built_in">enable</span>=1</span><br><span class="line">gpgcheck=0</span><br><span class="line"></span><br><span class="line"><span class="comment">#released updates</span></span><br><span class="line">[updates]</span><br><span class="line">name=CentOS-<span class="variable">$releasever</span> - Updates</span><br><span class="line">baseurl=http://10.100.10.89/centos/<span class="variable">$releasever</span>/updates/<span class="variable">$basearch</span>/</span><br><span class="line"><span class="built_in">enable</span>=1</span><br><span class="line">gpgcheck=0</span><br><span class="line"></span><br><span class="line"><span class="comment">#additional packages that may be useful</span></span><br><span class="line">[extras]</span><br><span class="line">name=CentOS-<span class="variable">$releasever</span> - Extras</span><br><span class="line">baseurl=http://10.100.10.89/centos/<span class="variable">$releasever</span>/extras/<span class="variable">$basearch</span>/</span><br><span class="line"><span class="built_in">enable</span>=1</span><br><span class="line">gpgcheck=0</span><br><span class="line"></span><br><span class="line">[epel]</span><br><span class="line">name=Extra Packages <span class="keyword">for</span> Enterprise Linux 7 - <span class="variable">$basearch</span></span><br><span class="line">baseurl=http://10.100.10.89/centos/epel/7/<span class="variable">$basearch</span></span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=0</span><br><span class="line"></span><br><span class="line">yum clean all</span><br><span class="line">yum makecache</span><br></pre></td></tr></table></figure>
+
+<p>参数说明-a, –archive 归档模式，表示以递归方式传输文件，并保持所有文件属</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-v, --verbose 详细模式输出</span><br><span class="line">-r, --recursive 对子目录以递归模式处理</span><br><span class="line">-t, --<span class="built_in">times</span> 保持文件时间信息</span><br><span class="line">-z, --compress 对备份的文件在传输时进行压缩处理</span><br><span class="line">-H, --hard-links 保留硬链接</span><br><span class="line">--delete 删除那些DST中SRC没有的文件</span><br><span class="line">--delay-updates 在传输末尾把所有更新的文件放到位</span><br><span class="line">--exclude=PATTERN 指定排除不需要传输的文件模式</span><br><span class="line">--include=PATTERN 指定不排除而需要传输的文件模式</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置网络源"><a href="#配置网络源" class="headerlink" title="配置网络源"></a>配置网络源</h2><h3 id="镜像站"><a href="#镜像站" class="headerlink" title="镜像站"></a>镜像站</h3><table>
+<thead>
+<tr>
+<th>序号</th>
+<th>镜像站名称</th>
+<th>Kali</th>
+<th>Rocky</th>
+<th>AlmaLinux</th>
+<th>EPEL</th>
+<th>Fedora</th>
+<th>openEuler</th>
+<th>OpenCloudOS</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><a target="_blank" rel="noopener" href="https://mirrors.aliyun.com/">阿里云</a></td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a target="_blank" rel="noopener" href="https://mirrors.tencent.com/">腾讯云</a></td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a target="_blank" rel="noopener" href="https://mirrors.huaweicloud.com/">华为云</a></td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a target="_blank" rel="noopener" href="https://mirrors.163.com/">网易</a></td>
+<td>❌</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a target="_blank" rel="noopener" href="https://mirrors.sohu.com/">搜狐</a></td>
+<td>❌</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>6</td>
+<td><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/">清华大学</a></td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>7</td>
+<td><a target="_blank" rel="noopener" href="https://mirrors.pku.edu.cn/Mirrors">北京大学</a></td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>8</td>
+<td><a target="_blank" rel="noopener" href="https://mirrors.zju.edu.cn/">浙江大学</a></td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>9</td>
+<td><a target="_blank" rel="noopener" href="https://mirrors.nju.edu.cn/">南京大学</a></td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>10</td>
+<td><a target="_blank" rel="noopener" href="https://mirrors.cqu.edu.cn/">重庆大学</a></td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>11</td>
+<td><a target="_blank" rel="noopener" href="https://mirror.lzu.edu.cn/">兰州大学</a></td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>12</td>
+<td><a target="_blank" rel="noopener" href="https://mirror.sjtu.edu.cn/">上海交通大学</a></td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>13</td>
+<td><a target="_blank" rel="noopener" href="https://mirrors.hit.edu.cn/">哈尔滨工业大学</a></td>
+<td>✅</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>14</td>
+<td><a target="_blank" rel="noopener" href="https://mirrors.ustc.edu.cn/">中国科学技术大学</a></td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>15</td>
+<td><a target="_blank" rel="noopener" href="https://mirror.iscas.ac.cn/">中国科学院软件研究所</a></td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+</tbody></table>
+<p><strong>使用建议</strong></p>
+<p>上述列表中的镜像站均支持 <code>Debian Ubuntu CentOS openSUSE Arch Linux </code>软件源，列表根据单位性质、地理位置、名称长度进行排序与实际速度无关</p>
+<p>软件源的速度区分刷新速度和下载速度，后者才是关键，具体请结合实际地理位置选择尝试，华北地区建议优先使用 中科大、腾讯云 镜像站，你可以使用下面提到的<a target="_blank" rel="noopener" href="https://linuxmirrors.cn/mirrors/#%E5%B7%A5%E5%85%B7%E7%BD%91%E7%AB%99">辅助工具网站</a>来帮助你进行选择</p>
+<p>目前不建议使用 阿里云 镜像站，由于使用人数过多其公网下行带宽已被限制在了 10M 左右。如果你的内网环境过于复杂例如经过了多次 NAT 转换那么请不要使用 清华大学(TUNA) 镜像站，容易被阻断</p>
+<h3 id="配置-Centos-网络yum源"><a href="#配置-Centos-网络yum源" class="headerlink" title="配置 Centos 网络yum源"></a>配置 Centos 网络yum源</h3><p>请注意，<code>CentOS 8</code>（非 Stream 版）已提前进入 EOL 停止服务阶段，因此镜像已被官方移动。如果正在寻找关于这些系统的镜像，请配置各大镜像站的 <code>centos-vault</code>源。</p>
+<p>注意：与之前的版本不同，CentOS 8 系统有两个yum 源：BaseOS和AppStream ，需要分别设置两个仓库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># centos 7</span></span><br><span class="line">[root@centos7 ~]<span class="comment"># vim /etc/yum.repos.d/base.repo</span></span><br><span class="line">[epel]</span><br><span class="line">name=epel</span><br><span class="line">baseurl=https://mirrors.aliyun.com/epel/<span class="variable">$releasever</span>/<span class="variable">$basearch</span>/</span><br><span class="line">        https://mirrors.tuna.tsinghua.edu.cn/epel/<span class="variable">$releasever</span>/<span class="variable">$basearch</span>/</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=https://mirrors.aliyun.com/epel/RPM-GPG-KEY-EPEL-7</span><br><span class="line"></span><br><span class="line">[centosplus]</span><br><span class="line">name=centosplus</span><br><span class="line">baseurl=https://mirrors.tuna.tsinghua.edu.cn/centos/<span class="variable">$releasever</span>/centosplus/<span class="variable">$basearch</span>/</span><br><span class="line">        https://mirrors.aliyun.com/centos/7/centosplus/<span class="variable">$basearch</span>/</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=https://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOS-7</span><br><span class="line"></span><br><span class="line">[base]   </span><br><span class="line">name=base </span><br><span class="line">baseurl=https://mirrors.aliyun.com/centos/<span class="variable">$releasever</span>/os/<span class="variable">$basearch</span>/</span><br><span class="line">        https://mirrors.tuna.tsinghua.edu.cn/centos/<span class="variable">$releasever</span>/os/<span class="variable">$basearch</span>/</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=https://mirrors.tuna.tsinghua.edu.cn/centos/7/os/x86_64/RPM-GPG-KEY-CentOS-7</span><br><span class="line"></span><br><span class="line">[updates]</span><br><span class="line">name=updates</span><br><span class="line">baseurl=https://mirrors.tuna.tsinghua.edu.cn/centos/<span class="variable">$releasever</span>/updates/<span class="variable">$basearch</span>/</span><br><span class="line">        https://mirrors.aliyun.com/centos/<span class="variable">$releasever</span>/updates/<span class="variable">$basearch</span>/</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=https://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOS-7</span><br><span class="line"></span><br><span class="line"><span class="comment">#centos 8 </span></span><br><span class="line">[root@centos8 ~]<span class="comment"># vim /etc/yum.repos.d/base.repo</span></span><br><span class="line"><span class="built_in">cat</span> &gt; /etc/yum.repos.d/base.repo &lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">[AppStream]</span></span><br><span class="line"><span class="string">name=AppStream</span></span><br><span class="line"><span class="string">baseurl=https://mirrors.aliyun.com/centos/$releasever/AppStream/$basearch/os/</span></span><br><span class="line"><span class="string">       =https://mirror.nju.edu.cn/centos-vault/centos/$releasever/AppStream/$basearch/os/</span></span><br><span class="line"><span class="string">gpgcheck=0</span></span><br><span class="line"><span class="string">enabled=1                      </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[BaseOS]</span></span><br><span class="line"><span class="string">name=BaseOS</span></span><br><span class="line"><span class="string">baseurl=https://mirrors.aliyun.com/centos/$releasever/BaseOS/$basearch/os/</span></span><br><span class="line"><span class="string">       =https://mirror.nju.edu.cn/centos-vault/centos/$releasever/BaseOS/$basearch/os/</span></span><br><span class="line"><span class="string">gpgcheck=0</span></span><br><span class="line"><span class="string">enabled=1</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[epel]</span></span><br><span class="line"><span class="string">name=EPEL</span></span><br><span class="line"><span class="string">baseurl=http://mirrors.aliyun.com/epel/$releasever/Everything/$basearch</span></span><br><span class="line"><span class="string">       http://mirrors.huaweicloud.com/epel/$releasever/Everything/$basearch</span></span><br><span class="line"><span class="string">gpgcheck=0</span></span><br><span class="line"><span class="string">enabled=1</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[extras]</span></span><br><span class="line"><span class="string">name=extras</span></span><br><span class="line"><span class="string">baseurl=https://mirrors.aliyun.com/centos/$releasever/extras/$basearch/os/</span></span><br><span class="line"><span class="string">gpgcheck=0</span></span><br><span class="line"><span class="string">enabled=1</span></span><br></pre></td></tr></table></figure>
+
+<p>centos 7 脚本配置网络yum源</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">vim repoconfig.sh</span><br><span class="line"><span class="comment">#!bin/bash</span></span><br><span class="line">repo=/etc/yum.repos.d</span><br><span class="line"><span class="built_in">mkdir</span> -p /etc/yum.repos.d/back</span><br><span class="line"><span class="built_in">mv</span> <span class="variable">$repo</span>/*.repo <span class="variable">$repo</span>/back</span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$repo</span></span><br><span class="line"><span class="built_in">cat</span> &gt; base.repo &lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">[epel]</span></span><br><span class="line"><span class="string">name=epel</span></span><br><span class="line"><span class="string">baseurl=https://mirrors.aliyun.com/epel/$releasever/$basearch/</span></span><br><span class="line"><span class="string">        https://mirrors.tuna.tsinghua.edu.cn/epel/$releasever/$basearch/</span></span><br><span class="line"><span class="string">gpgcheck=1</span></span><br><span class="line"><span class="string">gpgkey=https://mirrors.aliyun.com/epel/RPM-GPG-KEY-EPEL-7</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[centosplus]</span></span><br><span class="line"><span class="string">name=centosplus</span></span><br><span class="line"><span class="string">baseurl=https://mirrors.tuna.tsinghua.edu.cn/centos/$releasever/centosplus/$basearch/</span></span><br><span class="line"><span class="string">        https://mirrors.aliyun.com/centos/7/centosplus/$basearch/</span></span><br><span class="line"><span class="string">gpgcheck=1</span></span><br><span class="line"><span class="string">gpgkey=https://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOS-7</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[base]   </span></span><br><span class="line"><span class="string">name=base </span></span><br><span class="line"><span class="string">baseurl=https://mirrors.aliyun.com/centos/$releasever/os/$basearch/</span></span><br><span class="line"><span class="string">        https://mirrors.tuna.tsinghua.edu.cn/centos/$releasever/os/$basearch/</span></span><br><span class="line"><span class="string">gpgcheck=1</span></span><br><span class="line"><span class="string">gpgkey=https://mirrors.tuna.tsinghua.edu.cn/centos/7/os/x86_64/RPM-GPG-KEY-CentOS-7</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[updates]</span></span><br><span class="line"><span class="string">name=updates</span></span><br><span class="line"><span class="string">baseurl=https://mirrors.tuna.tsinghua.edu.cn/centos/$releasever/updates/$basearch/</span></span><br><span class="line"><span class="string">        https://mirrors.aliyun.com/centos/$releasever/updates/$basearch/</span></span><br><span class="line"><span class="string">gpgcheck=1</span></span><br><span class="line"><span class="string">gpgkey=https://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOS-7</span></span><br><span class="line"><span class="string">EOF</span> </span><br><span class="line">yum clean all  <span class="comment">#清理缓存</span></span><br><span class="line">yum makecache  <span class="comment">#更新缓存</span></span><br></pre></td></tr></table></figure>
+
+<p>使用命令配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 清华源, 对于 CentOS 7</span></span><br><span class="line">sudo sed -e <span class="string">&#x27;s|^mirrorlist=|#mirrorlist=|g&#x27;</span> \</span><br><span class="line">         -e <span class="string">&#x27;s|^#baseurl=http://mirror.centos.org/centos|baseurl=https://mirrors.tuna.tsinghua.edu.cn/centos|g&#x27;</span> \</span><br><span class="line">         -i.bak \</span><br><span class="line">         /etc/yum.repos.d/CentOS-*.repo</span><br><span class="line"></span><br><span class="line"><span class="comment"># 南京大学源, 对于 CentOS 8, 由于已经停止支持,所以需要配置centos过期源centos-vault</span></span><br><span class="line">sudo sed -e <span class="string">&#x27;s|^mirrorlist=|#mirrorlist=|g&#x27;</span> \</span><br><span class="line">         -e <span class="string">&#x27;s|^#baseurl=http://mirror.centos.org/$contentdir|baseurl=https://mirror.nju.edu.cn/centos-vault/centos|g&#x27;</span> \</span><br><span class="line">         -i.bak \</span><br><span class="line">         /etc/yum.repos.d/CentOS-*.repo</span><br></pre></td></tr></table></figure>
+
+<h3 id="过期的yum源"><a href="#过期的yum源" class="headerlink" title="过期的yum源"></a>过期的yum源</h3><p>需要确定所需要的小版本，如无特殊需要则使用该大版本的最后一个小版本，比如 6.10，5.11，需要在命令中替换$minorver变量。</p>
+<h4 id="清华CentOS-Vault-软件仓库"><a href="#清华CentOS-Vault-软件仓库" class="headerlink" title="清华CentOS Vault 软件仓库"></a>清华CentOS Vault 软件仓库</h4><p><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/centos-vault/">centos-vault | 镜像站使用帮助 | 清华大学开源软件镜像站 | Tsinghua Open Source Mirror</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CentOS 6 及之前</span></span><br><span class="line">minorver=6.10</span><br><span class="line">sudo sed -e <span class="string">&quot;s|^mirrorlist=|#mirrorlist=|g&quot;</span> \</span><br><span class="line">         -e <span class="string">&quot;s|^#baseurl=http://mirror.centos.org/centos/\$releasever|baseurl=https://mirrors.tuna.tsinghua.edu.cn/centos-vault/<span class="variable">$minorver</span>|g&quot;</span> \</span><br><span class="line">         -i.bak \</span><br><span class="line">         /etc/yum.repos.d/CentOS-*.repo</span><br><span class="line"></span><br><span class="line"><span class="comment"># CentOS 8 之后</span></span><br><span class="line">minorver=8.5.2111</span><br><span class="line">sudo sed -e <span class="string">&quot;s|^mirrorlist=|#mirrorlist=|g&quot;</span> \</span><br><span class="line">         -e <span class="string">&quot;s|^#baseurl=http://mirror.centos.org/\$contentdir/\$releasever|baseurl=https://mirrors.tuna.tsinghua.edu.cn/centos-vault/<span class="variable">$minorver</span>|g&quot;</span> \</span><br><span class="line">         -i.bak \</span><br><span class="line">         /etc/yum.repos.d/CentOS-*.repo</span><br><span class="line"></span><br><span class="line">yum makecache    <span class="comment"># 更新软件包缓存</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="阿里云CentOS-Vault-软件仓库"><a href="#阿里云CentOS-Vault-软件仓库" class="headerlink" title="阿里云CentOS Vault 软件仓库"></a>阿里云CentOS Vault 软件仓库</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#  Centos 6</span></span><br><span class="line">minorver=6.10</span><br><span class="line">sudo sed -e <span class="string">&quot;s|^mirrorlist=|#mirrorlist=|g&quot;</span> \</span><br><span class="line">         -e <span class="string">&quot;s|^#baseurl=http://mirror.centos.org/centos/\$releasever|baseurl=https://mirrors.aliyun.com/centos-vault/<span class="variable">$minorver</span>|g&quot;</span> \</span><br><span class="line">         -i.bak \</span><br><span class="line">         /etc/yum.repos.d/CentOS-*.repo</span><br><span class="line"></span><br><span class="line"><span class="comment"># CentOS 8 </span></span><br><span class="line">minorver=8.5.2111</span><br><span class="line">sudo sed -e <span class="string">&quot;s|^mirrorlist=|#mirrorlist=|g&quot;</span> \</span><br><span class="line">         -e <span class="string">&quot;s|^#baseurl=http://mirror.centos.org/\$contentdir/\$releasever|baseurl=https://mirrors.aliyun.com/centos-vault/<span class="variable">$minorver</span>|g&quot;</span> \</span><br><span class="line">         -i.bak \</span><br><span class="line">         /etc/yum.repos.d/CentOS-*.repo</span><br><span class="line"></span><br><span class="line">yum makecache    <span class="comment"># 更新软件包缓存</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="手动配置-Ubuntu-网络软件源"><a href="#手动配置-Ubuntu-网络软件源" class="headerlink" title="手动配置 Ubuntu 网络软件源"></a>手动配置 Ubuntu 网络软件源</h3><p>Ubuntu 的软件源配置文件是<code> /etc/apt/sources.list</code>。将系统自带的该文件做个备份，将该文件替换为下面内容，即可使用选择的软件源镜像。</p>
+<p>清华源: <a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/">ubuntu | 镜像站使用帮助 | 清华大学开源软件镜像站 | Tsinghua Open Source Mirror</a></p>
+<p>阿里云源: <a target="_blank" rel="noopener" href="https://developer.aliyun.com/mirror/ubuntu?spm=a2c6h.13651102.0.0.1ecc1b11xxWgOg">ubuntu镜像_ubuntu下载地址_ubuntu安装教程-阿里巴巴开源镜像站 (aliyun.com)</a></p>
+<p>南京大学源: <a target="_blank" rel="noopener" href="https://mirror.nju.edu.cn/mirrorz-help/ubuntu/?mirror=NJU">Ubuntu 软件仓库镜像使用帮助 - MirrorZ Help (nju.edu.cn)</a></p>
+<p>Ubuntu 版本：18.04 LTS</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 备份原来的源，将以前的源备份一下，以防以后可以用的。</span></span><br><span class="line">sudo <span class="built_in">cp</span> /etc/apt/sources.list /etc/apt/sources.list.bak</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打开/etc/apt/sources.list文件, 在前面添加如下条目，并保存。</span></span><br><span class="line">sudo vim /etc/apt/sources.list</span><br><span class="line"><span class="comment"># 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse</span></span><br><span class="line"><span class="comment"># # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse</span></span><br><span class="line"></span><br><span class="line">deb http://security.ubuntu.com/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src http://security.ubuntu.com/ubuntu/ bionic-security main restricted universe multiverse</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 预发布软件源，不建议启用</span></span><br><span class="line"><span class="comment"># deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse</span></span><br><span class="line"><span class="comment"># # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新源</span></span><br><span class="line">sudo apt-get update</span><br><span class="line"><span class="comment">#如出现依赖问题，解决方式如下：</span></span><br><span class="line">sudo apt-get -f install</span><br><span class="line"></span><br><span class="line"><span class="comment">#更新软件：</span></span><br><span class="line">sudo apt-get upgrade</span><br></pre></td></tr></table></figure>
+
+<p>Ubuntu 版本：20.04 LTS</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 备份原来的源，将以前的源备份一下，以防以后可以用的。</span></span><br><span class="line">sudo <span class="built_in">cp</span> /etc/apt/sources.list /etc/apt/sources.list.bak</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打开/etc/apt/sources.list文件, 在前面添加如下条目，并保存。</span></span><br><span class="line">sudo vim /etc/apt/sources.list</span><br><span class="line"><span class="comment"># 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-updates main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-updates main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-backports main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-backports main restricted universe multiverse</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security main restricted universe multiverse</span></span><br><span class="line"><span class="comment"># # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security main restricted universe multiverse</span></span><br><span class="line"></span><br><span class="line">deb http://security.ubuntu.com/ubuntu/ focal-security main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src http://security.ubuntu.com/ubuntu/ focal-security main restricted universe multiverse</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 预发布软件源，不建议启用</span></span><br><span class="line"><span class="comment"># deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-proposed main restricted universe multiverse</span></span><br><span class="line"><span class="comment"># # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-proposed main restricted universe multiverse</span></span><br></pre></td></tr></table></figure>
+
+<p>Ubuntu 版本：22.04 LTS</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 备份原来的源，将以前的源备份一下，以防以后可以用的。</span></span><br><span class="line">sudo <span class="built_in">cp</span> /etc/apt/sources.list /etc/apt/sources.list.bak</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打开/etc/apt/sources.list文件, 在前面添加如下条目，并保存。</span></span><br><span class="line">sudo vim /etc/apt/sources.list</span><br><span class="line"><span class="comment"># 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-security main restricted universe multiverse</span></span><br><span class="line"><span class="comment"># # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-security main restricted universe multiverse</span></span><br><span class="line"></span><br><span class="line">deb http://security.ubuntu.com/ubuntu/ jammy-security main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src http://security.ubuntu.com/ubuntu/ jammy-security main restricted universe multiverse</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 预发布软件源，不建议启用</span></span><br><span class="line"><span class="comment"># deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-proposed main restricted universe multiverse</span></span><br><span class="line"><span class="comment"># # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-proposed main restricted universe multiverse</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="LinuxMirrors-项目"><a href="#LinuxMirrors-项目" class="headerlink" title="LinuxMirrors 项目"></a>LinuxMirrors 项目</h2><p>GNU&#x2F;Linux 一键更换系统软件源脚本</p>
+<p>这是一个完全开源的非盈利项目，旨在为从事计算机相关行业的朋友们提供便利</p>
+<blockquote>
+<p>Github: <a target="_blank" rel="noopener" href="https://github.com/SuperManito/LinuxMirrors">https://github.com/SuperManito/LinuxMirrors</a></p>
+<p>Website: <a target="_blank" rel="noopener" href="https://linuxmirrors.cn/">https://linuxmirrors.cn</a></p>
+</blockquote>
+<h3 id="适配系统及其版本"><a href="#适配系统及其版本" class="headerlink" title="适配系统及其版本"></a>适配系统及其版本</h3><table>
+<thead>
+<tr>
+<th>Debian</th>
+<th>8.0  ~ 12</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Ubuntu</td>
+<td>14.04  ~ 23</td>
+</tr>
+<tr>
+<td>Kali  Linux</td>
+<td>2.0  ~ 2023</td>
+</tr>
+<tr>
+<td>Red  Hat Enterprise Linux</td>
+<td>7.0  ~ 9</td>
+</tr>
+<tr>
+<td>Fedora</td>
+<td>30  ~ 38</td>
+</tr>
+<tr>
+<td>CentOS</td>
+<td>7.0  ~ 8.5 &#x2F; Stream 8 ~ 9</td>
+</tr>
+<tr>
+<td>Rocky  Linux</td>
+<td>8  ~ 9</td>
+</tr>
+<tr>
+<td>AlmaLinux</td>
+<td>8  ~ 9</td>
+</tr>
+<tr>
+<td>OpenCloudOS</td>
+<td>8.6  &#x2F; 9.0</td>
+</tr>
+<tr>
+<td>openEuler</td>
+<td>21.03  ~ 23</td>
+</tr>
+<tr>
+<td>openSUSE</td>
+<td>Leep  15 &#x2F; Tumbleweed</td>
+</tr>
+<tr>
+<td>Arch  Linux</td>
+<td>all</td>
+</tr>
+</tbody></table>
+<p>当前支持上述基于 <code>Debian、RedHat、OpenCloudOS、openEuler、openSUSE、Arch Linux </code>的发行版和及其部分衍生版本<br> 点击列表中的图标可快速前往其官网，理论支持所有架构的环境</p>
+<p>脚本文件:</p>
+<p><a href="assets/ChangeMirrors-20230510141711-nfwadx8.sh">ChangeMirrors.sh</a></p>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://s3.bmp.ovh/imgs/2024/01/17/8abcbf98bed2ccbc.jpg" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://s3.bmp.ovh/imgs/2024/01/17/8abcbf98bed2ccbc.jpg" title="头像" alt="头像"></a><div class="post-copyright__author_name">馒头馅儿大肉包</div><div class="post-copyright__author_desc">要努力鸭,为了想要的生活。</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="http://blog.techcat.cc/posts/ec80583f.html">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('http://blog.techcat.cc/posts/ec80583f.html')">Linux基础配置</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"><div class="post-reward" onclick="anzhiyu.addRewardMask()"><div class="reward-button button--animated" title="赞赏作者"><i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者</div><div class="reward-main"><div class="reward-all"><span class="reward-title">感谢你赐予我前进的力量</span><ul class="reward-group"><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul><a class="reward-main-btn" href="/about/#about-reward" target="_blank"><div class="reward-text">赞赏者名单</div><div class="reward-dec">因为你们的支持让我意识到写文章的价值🙏</div></a></div></div></div><div id="quit-box" onclick="anzhiyu.removeRewardMask()" style="display: none"></div></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="http://blog.techcat.cc/posts/ec80583f.html"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=Linux基础配置&amp;url=http://blog.techcat.cc/posts/ec80583f.html&amp;pic=https://s3.bmp.ovh/imgs/2023/08/27/adfaf2a408c7d8f0.jpg?_r_=4a1934b4-8610-6234-8868-c07e34baaea3" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://blog.techcat.cc" target="_blank">馒头馅儿大肉包</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__category-list"><a class="post-meta__box__categoryes" href="/categories/Linux/"><span class="categoryes-punctuation"> <i class="anzhiyufont anzhiyu-icon-inbox"></i></span>Linux<span class="categoryesPageCount">2</span></a></div><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/yum%E6%BA%90/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>yum源<span class="tagsPageCount">1</span></a><a class="post-meta__box__tags" href="/tags/ubuntu/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>ubuntu<span class="tagsPageCount">2</span></a><a class="post-meta__box__tags" href="/tags/centos/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>centos<span class="tagsPageCount">1</span></a><a class="post-meta__box__tags" href="/tags/%E8%BD%AF%E4%BB%B6%E6%BA%90/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>软件源<span class="tagsPageCount">1</span></a></div></div><div class="post_share"><div class="addtoany"><div class="a2a_kit a2a_kit_size_32 a2a_default_style"><a class="a2a_button_wechat"></a><a class="a2a_button_sina_weibo"></a><a class="a2a_button_email"></a><a class="a2a_button_copy_link"></a><a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a></div></div><script async="async" src="https://static.addtoany.com/menu/page.js"></script></div></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/posts/dfa35092.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://s3.bmp.ovh/imgs/2024/01/16/a41bb3528af27677.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">kubectl备忘录</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="anzhiyufont anzhiyu-icon-thumbs-up fa-fw" style="font-size: 1.5rem; margin-right: 4px"></i><span>喜欢这篇文章的人也看了</span></div><div class="relatedPosts-list"><div><a href="/posts/7c4b9639.html" title="ubuntu"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://s3.bmp.ovh/imgs/2024/01/16/2e7f9a9a386f638e.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-01-17</div><div class="title">ubuntu</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> 评论</span></div><div class="comment-randomInfo"><a onclick="anzhiyu.addRandomCommentInfo()" href="javascript:void(0)">匿名评论</a><a href="/privacy" style="margin-left: 4px">隐私政策</a></div><div class="comment-tips" id="comment-tips"><span>✅ 你无需删除空行，直接评论以获取最佳展示效果</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div><div class="comment-barrage"></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://s3.bmp.ovh/imgs/2024/01/17/8abcbf98bed2ccbc.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-status"><img class="g-status" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2023/08/24/64e6ce9c507bb.png" alt="status"/></div></div><div class="author-info__description"><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">这有关于<b style="color:#fff">产品、设计、开发</b>相关的问题和看法，还有<b style="color:#fff">文章翻译</b>和<b style="color:#fff">分享</b>。</div><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">相信你可以在这里找到对你有用的<b style="color:#fff">知识</b>和<b style="color:#fff">教程</b>。</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/about"><h1 class="author-info__name">馒头馅儿大肉包</h1><div class="author-info__desc">要努力鸭,为了想要的生活。</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/techcatnip" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="social-icon faa-parent animated-hover" href="https://space.bilibili.com/5070155" target="_blank" title="BiliBili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux%E9%85%8D%E7%BD%AE%E8%BD%AF%E4%BB%B6%E6%BA%90"><span class="toc-number">1.</span> <span class="toc-text">Linux配置软件源</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#yum%E6%BA%90%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E"><span class="toc-number">1.1.</span> <span class="toc-text">yum源配置文件说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEISO%E6%9C%AC%E5%9C%B0%E6%BA%90"><span class="toc-number">1.2.</span> <span class="toc-text">配置ISO本地源</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Centos-%E4%BD%BF%E7%94%A8-ISO-%E5%85%89%E7%9B%98%E6%96%87%E4%BB%B6%E4%BD%9C%E4%B8%BA%E6%9C%AC%E5%9C%B0%E6%BA%90"><span class="toc-number">1.2.1.</span> <span class="toc-text">Centos 使用 ISO 光盘文件作为本地源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Centos%E4%BD%BF%E7%94%A8%E8%84%9A%E6%9C%AC%E9%85%8D%E7%BD%AE%E6%9C%AC%E5%9C%B0%E6%BA%90"><span class="toc-number">1.2.2.</span> <span class="toc-text">Centos使用脚本配置本地源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ubuntu%E4%BD%BF%E7%94%A8-ISO-%E5%85%89%E7%9B%98%E6%96%87%E4%BB%B6%E4%BD%9C%E4%B8%BA%E6%9C%AC%E5%9C%B0%E6%BA%90"><span class="toc-number">1.2.3.</span> <span class="toc-text">Ubuntu使用 ISO 光盘文件作为本地源</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%A7%81%E6%9C%89-yum-%E4%BB%93%E5%BA%93"><span class="toc-number">1.3.</span> <span class="toc-text">搭建本地私有 yum 仓库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F%E4%B8%80-%E5%88%9B%E5%BB%BA%E5%B1%80%E5%9F%9F%E7%BD%91%E7%9A%84%E5%9F%BA%E4%BA%8EISO%E5%85%89%E7%9B%98%E7%9A%84%E7%A7%81%E6%9C%89yum%E6%BA%90"><span class="toc-number">1.3.1.</span> <span class="toc-text">方式一: 创建局域网的基于ISO光盘的私有yum源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F%E4%BA%8C-reposync%E4%B8%8B%E8%BD%BD%E9%98%BF%E9%87%8C%E4%BA%91%E7%9A%84EPEL%E6%BA%90%EF%BC%8C%E5%88%B6%E4%BD%9C%E7%A7%81%E6%9C%89yum%E6%BA%90"><span class="toc-number">1.3.2.</span> <span class="toc-text">方式二: reposync下载阿里云的EPEL源，制作私有yum源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F%E4%B8%89-rsync%E5%90%8C%E6%AD%A5%E5%85%AC%E7%BD%91%E7%9A%84yum%E4%BB%93%E5%BA%93"><span class="toc-number">1.3.3.</span> <span class="toc-text">方式三: rsync同步公网的yum仓库</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#centos-7"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">centos 7</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E7%BD%91%E7%BB%9C%E6%BA%90"><span class="toc-number">1.4.</span> <span class="toc-text">配置网络源</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%95%9C%E5%83%8F%E7%AB%99"><span class="toc-number">1.4.1.</span> <span class="toc-text">镜像站</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-Centos-%E7%BD%91%E7%BB%9Cyum%E6%BA%90"><span class="toc-number">1.4.2.</span> <span class="toc-text">配置 Centos 网络yum源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%87%E6%9C%9F%E7%9A%84yum%E6%BA%90"><span class="toc-number">1.4.3.</span> <span class="toc-text">过期的yum源</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B8%85%E5%8D%8ECentOS-Vault-%E8%BD%AF%E4%BB%B6%E4%BB%93%E5%BA%93"><span class="toc-number">1.4.3.1.</span> <span class="toc-text">清华CentOS Vault 软件仓库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%98%BF%E9%87%8C%E4%BA%91CentOS-Vault-%E8%BD%AF%E4%BB%B6%E4%BB%93%E5%BA%93"><span class="toc-number">1.4.3.2.</span> <span class="toc-text">阿里云CentOS Vault 软件仓库</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%8B%E5%8A%A8%E9%85%8D%E7%BD%AE-Ubuntu-%E7%BD%91%E7%BB%9C%E8%BD%AF%E4%BB%B6%E6%BA%90"><span class="toc-number">1.4.4.</span> <span class="toc-text">手动配置 Ubuntu 网络软件源</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LinuxMirrors-%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.5.</span> <span class="toc-text">LinuxMirrors 项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%82%E9%85%8D%E7%B3%BB%E7%BB%9F%E5%8F%8A%E5%85%B6%E7%89%88%E6%9C%AC"><span class="toc-number">1.5.1.</span> <span class="toc-text">适配系统及其版本</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/ec80583f.html" title="Linux基础配置"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://s3.bmp.ovh/imgs/2023/08/27/adfaf2a408c7d8f0.jpg?_r_=4a1934b4-8610-6234-8868-c07e34baaea3" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux基础配置"/></a><div class="content"><a class="title" href="/posts/ec80583f.html" title="Linux基础配置">Linux基础配置</a><time datetime="2024-01-19T09:21:30.000Z" title="发表于 2024-01-19 17:21:30">2024-01-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/dfa35092.html" title="kubectl备忘录"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://s3.bmp.ovh/imgs/2024/01/16/a41bb3528af27677.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="kubectl备忘录"/></a><div class="content"><a class="title" href="/posts/dfa35092.html" title="kubectl备忘录">kubectl备忘录</a><time datetime="2024-01-17T04:08:09.000Z" title="发表于 2024-01-17 12:08:09">2024-01-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/7c4b9639.html" title="ubuntu"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://s3.bmp.ovh/imgs/2024/01/16/2e7f9a9a386f638e.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ubuntu"/></a><div class="content"><a class="title" href="/posts/7c4b9639.html" title="ubuntu">ubuntu</a><time datetime="2024-01-17T03:27:46.000Z" title="发表于 2024-01-17 11:27:46">2024-01-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/4a17b156.html" title="Hello World"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://file.crazywong.com/gh/jerryc127/CDN@latest/cover/default_bg.png?_r_=7901ee8e-3ff4-19a5-c50c-d45244314757" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/posts/4a17b156.html" title="Hello World">Hello World</a><time datetime="2024-01-15T09:58:22.302Z" title="发表于 2024-01-15 17:58:22">2024-01-15</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="workboard"><img class="workSituationImg boardsign" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.0.4/img/badge/安知鱼-上班摸鱼中.svg" alt="距离月入25k也就还差一个大佬带我~" title="距离月入25k也就还差一个大佬带我~"/><div id="runtimeTextTip"></div></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v5.4.0" title="博客框架为Hexo_v5.4.0"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.1.5/img/badge/Frame-Hexo.svg" alt="博客框架为Hexo_v5.4.0"/></a><a class="github-badge" target="_blank" href="https://blog.anheyu.com/" style="margin-inline:5px" data-title="本站使用AnZhiYu主题" title="本站使用AnZhiYu主题"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.9/img/Theme-AnZhiYu-2E67D3.svg" alt="本站使用AnZhiYu主题"/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title="本站项目由Github托管"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.1.5/img/badge/Source-Github.svg" alt="本站项目由Github托管"/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.2.0/img/badge/Copyright-BY-NC-SA.svg" alt="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"/></a><a class="github-badge" target="_blank" href="https://app.netlify.com/sites/techcatnip/deploys" style="margin-inline:5px" data-title="Netlify Status" title="Netlify Status"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://api.netlify.com/api/v1/badges/14025ac2-19c0-4e5b-a0db-8920be3c92eb/deploy-status" alt="Netlify Status"/></a></p></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2020 - 2024 By <a class="footer-bar-link" href="/" title="馒头馅儿大肉包" target="_blank">馒头馅儿大肉包</a></div></div><div id="footer-type-tips"></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">4</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">3</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" href="https://blog.techcat.cc/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://index.anheyu.com/" title="个人主页"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2023/08/13/64d8c2748ef34.jpg" alt="个人主页"/><span class="back-menu-item-text">个人主页</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.anheyu.com/" title="安知鱼图床"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.anheyu.com/favicon.ico" alt="安知鱼图床"/><span class="back-menu-item-text">安知鱼图床</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 归档</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/fcircle/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 朋友圈</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/?id=6681991756&amp;server=netease"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/bangumis/"><i class="anzhiyufont anzhiyu-icon-bilibili faa-tada" style="font-size: 0.9em;"></i><span> 追番页</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/album/"><i class="anzhiyufont anzhiyu-icon-images faa-tada" style="font-size: 0.9em;"></i><span> 相册集</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/air-conditioner/"><i class="anzhiyufont anzhiyu-icon-fan faa-tada" style="font-size: 0.9em;"></i><span> 小空调</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/equipment/"><i class="anzhiyufont anzhiyu-icon-dice-d20 faa-tada" style="font-size: 0.9em;"></i><span> 我的装备</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Linux/" style="font-size: 0.88rem;">Linux<sup>1</sup></a><a href="/tags/centos/" style="font-size: 0.88rem;">centos<sup>1</sup></a><a href="/tags/k8s/" style="font-size: 0.88rem;">k8s<sup>1</sup></a><a href="/tags/kubectl/" style="font-size: 0.88rem;">kubectl<sup>1</sup></a><a href="/tags/kubernetes/" style="font-size: 0.88rem;">kubernetes<sup>1</sup></a><a href="/tags/ubuntu/" style="font-size: 0.88rem;">ubuntu<sup>2</sup></a><a href="/tags/yum%E6%BA%90/" style="font-size: 0.88rem;">yum源<sup>1</sup></a><a href="/tags/%E7%A4%BA%E4%BE%8B/" style="font-size: 0.88rem;">示例<sup>1</sup></a><a href="/tags/%E8%BD%AF%E4%BB%B6%E6%BA%90/" style="font-size: 0.88rem;">软件源<sup>1</sup></a></div></div><hr/></div></div><div id="keyboard-tips"><div class="keyboardTitle">博客快捷键</div><div class="keybordList"><div class="keybordItem"><div class="keyGroup"><div class="key">shift K</div></div><div class="keyContent"><div class="content">关闭快捷键功能</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift A</div></div><div class="keyContent"><div class="content">打开/关闭中控台</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift M</div></div><div class="keyContent"><div class="content">播放/暂停音乐</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift D</div></div><div class="keyContent"><div class="content">深色/浅色显示模式</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift S</div></div><div class="keyContent"><div class="content">站内搜索</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift R</div></div><div class="keyContent"><div class="content">随机访问</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift H</div></div><div class="keyContent"><div class="content">返回首页</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift F</div></div><div class="keyContent"><div class="content">友链鱼塘</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift L</div></div><div class="keyContent"><div class="content">友链页面</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift P</div></div><div class="keyContent"><div class="content">关于本站</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift I</div></div><div class="keyContent"><div class="content">原版/本站右键菜单</div></div></div></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="anzhiyufont anzhiyu-icon-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="7815766992" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="anzhiyufont anzhiyu-icon-xmark"></i></button></nav><div class="is-center" id="loading-database"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-pulse-icon"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/7815766992&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.cbd.int/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("04/01/2021 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2020 By 安知鱼 V1.6.12",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 馒头馅儿大肉包 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><script async="async">(function () {
+  var grt = new Date("04/01/2021 00:00:00"); //设置网站上线时间
+  var now = new Date();
+  var dnum;
+  var hnum;
+  var mnum;
+  var snum;
+  var nowHour;
+
+  // 计算并更新天数、小时数、分钟数和秒数
+  function updateTime() {
+    now = new Date(); // 更新 now 的值
+    nowHour = now.getHours(); // 更新 nowHour 的值
+    var days = (now - grt) / 1000 / 60 / 60 / 24;
+    dnum = Math.floor(days);
+    var hours = (now - grt) / 1000 / 60 / 60 - 24 * dnum;
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+      hnum = "0" + hnum;
+    }
+    var minutes = (now - grt) / 1000 / 60 - 24 * 60 * dnum - 60 * hnum;
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+      mnum = "0" + mnum;
+    }
+    var seconds = (now - grt) / 1000 - 24 * 60 * 60 * dnum - 60 * 60 * hnum - 60 * mnum;
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+      snum = "0" + snum;
+    }
+  }
+
+  // 更新网页中显示的网站运行时间
+  function updateHtml() {
+    const footer = document.getElementById("footer");
+    if (!footer) return
+    let currentTimeHtml = "";
+    if (nowHour < 18 && nowHour >= 9) {
+      // 如果是上班时间，默认就是"安知鱼-上班摸鱼中.svg"图片，不需要更改
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    } else {
+      // 如果是下班时间，插入"安知鱼-下班啦.svg"图片
+      let img = document.querySelector("#workboard .workSituationImg");
+      if (img != null) {
+        img.src = "https://npm.elemecdn.com/anzhiyu-blog@2.0.4/img/badge/安知鱼-下班啦.svg";
+        img.title = "下班了就该开开心心的玩耍，嘿嘿~";
+        img.alt = "下班了就该开开心心的玩耍，嘿嘿~";
+      }
+
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    }
+
+    if (document.getElementById("runtimeTextTip")) {
+      document.getElementById("runtimeTextTip").innerHTML = currentTimeHtml;
+    }
+  }
+
+  setInterval(() => {
+    updateTime();
+    updateHtml();
+  }, 1000);
+})();</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.cbd.int/mathjax@3.2.2/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.cbd.int/katex@0.16.0/dist/katex.min.css"><script src="https://cdn.cbd.int/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    anzhiyu.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(() => {
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://leafy-dasik-1bfebc.netlify.app/.netlify/functions/twikoo',
+      region: 'ap-east-1',
+      onCommentLoaded: () => {
+        anzhiyu.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(runFn,0)
+    else getScript('https://cdn.cbd.int/twikoo@1.6.25/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://leafy-dasik-1bfebc.netlify.app/.netlify/functions/twikoo',
+      region: 'ap-east-1',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const runFn = () => {
+    init();
+    
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) anzhiyu.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else {
+      loadTwikoo()
+    }
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script><input type="hidden" name="page-type" id="page-type" value="post"></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://leafy-dasik-1bfebc.netlify.app/.netlify/functions/twikoo',
+        region: 'ap-east-1',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.cbd.int/twikoo@1.6.25/dist/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'><div class='name'><span>${array[i].nick} </span></div></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <time datetime="${array[i].date}">${anzhiyu.diffDate(array[i].date, true)}</time></div>
+        </div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script async data-pjax src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.1/bubble/bubble.js"></script><script>var visitorMail = "";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><script src="/js/anzhiyu/right_click_menu.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/fireworks.min.js"></script><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:type\"]","meta[property=\"og:site_name\"]","meta[property=\"og:description\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/bangumis/"]):not([href="/album/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>

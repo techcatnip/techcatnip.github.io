@@ -156,31 +156,20 @@
     
     
     <entry>
-      <title>分类</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>关于本人</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>相册</title>
       <link href="/album/index.html"/>
       <url>/album/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>分类</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -200,9 +189,9 @@
     
     
     <entry>
-      <title>我的装备</title>
-      <link href="/equipment/index.html"/>
-      <url>/equipment/index.html</url>
+      <title>关于本人</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -214,6 +203,17 @@
       <title>闲言碎语</title>
       <link href="/essay/index.html"/>
       <url>/essay/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>我的装备</title>
+      <link href="/equipment/index.html"/>
+      <url>/equipment/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -244,17 +244,6 @@
     
     
     <entry>
-      <title>友人帐</title>
-      <link href="/link/index.html"/>
-      <url>/link/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>音乐馆</title>
       <link href="/music/index.html"/>
       <url>/music/index.html</url>
@@ -266,9 +255,9 @@
     
     
     <entry>
-      <title>世界各地风景</title>
-      <link href="/wordScenery/index.html"/>
-      <url>/wordScenery/index.html</url>
+      <title>友人帐</title>
+      <link href="/link/index.html"/>
+      <url>/link/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -280,6 +269,17 @@
       <title>标签</title>
       <link href="/tags/index.html"/>
       <url>/tags/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>世界各地风景</title>
+      <link href="/wordScenery/index.html"/>
+      <url>/wordScenery/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       

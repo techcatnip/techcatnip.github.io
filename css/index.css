@@ -3316,7 +3316,7 @@ figure.highlight pre .javascript .function {
 #article-container pre,
 #article-container code {
   font-size: var(--global-font-size);
-  font-family: Menlo, "PingFang SC", "Microsoft JhengHei", "Microsoft YaHei", sans-serif, consolas !important;
+  font-family: consolas, PingFang SC ,Microsoft JhengHei,  Menlo, "Microsoft YaHei", sans-serif !important;
 }
 #article-container code {
   padding: 2px 4px;

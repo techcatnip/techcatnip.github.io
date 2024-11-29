@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>测试</title>
+      <link href="/posts/9daba997.html"/>
+      <url>/posts/9daba997.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="主题配色"><a href="#主题配色" class="headerlink" title="主题配色"></a>主题配色</h2><p><strong>第一步</strong>：将主题压缩包完整上传到服务器上 Typecho 的<code>/usr/themes/</code>文件夹内，解压，然后到 Typecho <code>后台</code>-<code>控制台</code>-<code>外观</code>-<code>启用</code>主题。</p><p><strong>第二步</strong>：启用后，创建对应页面，这里有三个页面需要创建，分别是<code>首页</code>、<code>祝福板</code>、<code>Love List</code>（<strong>一定要选择对应的模板！！！</strong>）。保存<code>祝福板页面</code>，和<code>Love List页面</code>的地址，后面会用到。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Linux常用配置项</title>
       <link href="/posts/217c81a9.html"/>
       <url>/posts/217c81a9.html</url>
@@ -231,17 +244,6 @@
     
     
     <entry>
-      <title>闲言碎语</title>
-      <link href="/essay/index.html"/>
-      <url>/essay/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title></title>
       <link href="/json/music.json"/>
       <url>/json/music.json</url>
@@ -264,9 +266,9 @@
     
     
     <entry>
-      <title>音乐馆</title>
-      <link href="/music/index.html"/>
-      <url>/music/index.html</url>
+      <title>闲言碎语</title>
+      <link href="/essay/index.html"/>
+      <url>/essay/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -289,6 +291,17 @@
       <title>世界各地风景</title>
       <link href="/wordScenery/index.html"/>
       <url>/wordScenery/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>音乐馆</title>
+      <link href="/music/index.html"/>
+      <url>/music/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
